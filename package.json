@@ -1,0 +1,11 @@
+{
+  "name": "intugine-project",
+  "version": "1.0.0",
+  "description": "intugine assignment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Shubh Bhardwaj",
+  "license": "ISC"
+}
