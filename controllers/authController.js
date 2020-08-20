@@ -18,7 +18,7 @@ module.exports = {
                     throw new Error("Password incorrect");
                 }
             } else{
-                throw new Error("Username incorrect");
+                throw new Error("No user found");
             }
 
         } catch (e) {
