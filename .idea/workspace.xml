@@ -4,8 +4,8 @@
     <list default="true" id="abea854a-0f7f-41f5-9d6d-097fd10f62e5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/authController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/authController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/middlewares/jwtAuthToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/middlewares/jwtAuthToken.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/conconxController.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/conconxController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/concoxRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/concoxRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1597913143310</updated>
-      <workItem from="1597913146113" duration="7548000" />
+      <workItem from="1597913146113" duration="12297000" />
     </task>
     <servers />
   </component>

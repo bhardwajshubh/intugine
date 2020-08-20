@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const auth = require('./routes/authRoutes');
 const concox = require('./routes/concoxRoutes');
 //db setup
-mongooseURL = 'mongodb+srv://backendconcoxdeveloper:<PASSWORD>@cluster0-zhjde.mongodb.net'.replace('<PASSWORD>', process.env.MONGOOSE_PASSWORD );
+mongooseURL = 'mongodb+srv://backendconcoxdeveloper:<PASSWORD>@cluster0-zhjde.mongodb.net/__CONCOX__'.replace('<PASSWORD>', process.env.MONGOOSE_PASSWORD );
 mongoose.connect(mongooseURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
