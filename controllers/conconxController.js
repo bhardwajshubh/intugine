@@ -67,9 +67,7 @@ module.exports = {
                 .select('gps createdAt')
                 .sort('_id')
                 .lean()
-            if(req.query.limit){
-                query.limit(req.query.limit*1);
-            }
+                .limit(60000)
             let data = await query;
             let count = 0;
             flag = false;
