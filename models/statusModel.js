@@ -50,6 +50,12 @@ const statusSchema = new mongoose.Schema({
         type : Date
     },
 });
+
+// statusSchema.pre('find' , function(next){
+//     if(this.time != null) this.time = Date.parse(this.time);
+//     next()
+// })
+
 const Status = mongoose.model("Status" , statusSchema);
 
 

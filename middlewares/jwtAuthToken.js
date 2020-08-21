@@ -3,6 +3,9 @@ const fsPromises = require('fs').promises
 module.exports = {
     authCheck : async (req , res , next) => {
         try{
+            if(!req.headers.authorization){
+                throw new Error("Authorization token not found");
+            }
             let token = req.headers.authorization.split(" ")[1];
             const tokenData = await jwt.verify(token , process.env.JWT_SECRET);
             const userData = await fsPromises.readFile(`${__dirname}/../users.json`, 'utf8');
