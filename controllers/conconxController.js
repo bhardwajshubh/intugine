@@ -55,7 +55,8 @@ module.exports = {
 
     calculateHalts : async (req , res) => {
         try{
-            let data = await Status
+
+            let query = Status
                 .find(
                         {
                             imei : req.params.deviceId,
@@ -66,7 +67,10 @@ module.exports = {
                 .select('gps createdAt')
                 .sort('_id')
                 .lean()
-                // .limit(100)
+            if(req.query.limit){
+                query.limit(req.query.limit*1);
+            }
+            let data = await query;
             let count = 0;
             flag = false;
             for(let i = 1 ; i < data.length ; i++){
