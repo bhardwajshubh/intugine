@@ -23,7 +23,7 @@ module.exports = {
 
         } catch (e) {
             console.log(`authController -> login controller ${e}`);
-            res.status(400).json({
+            res.status(403).json({
                 "status" : "failed",
                 "error" : e.message
             })

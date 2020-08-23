@@ -71,24 +71,57 @@ module.exports = {
             let data = await query;
             let count = 0;
             flag = false;
+            let results = [];
+            let objToPush = {};
             for(let i = 1 ; i < data.length ; i++){
+
+                //calculating time difference between two intervals
                 let date1 = new Date(data[i-1].createdAt)
                 let date2 = new Date(data[i].createdAt)
                 let diff = date1.getTime() - date2.getTime()
                 diff /= 60;
                 let minutes = Math.abs(Math.round(diff));
+
+                //if interval is > 15 minutes
                 if(minutes > 15){
+
+                    //calculating geoDistance between two coordinates
                     let distance = (getDistance(
                         { latitude: data[i-1].gps[0], longitude: data[i-1].gps[1] },
                         { latitude: data[i].gps[0], longitude: data[i].gps[1] }
                     ));
+
+                    //if distance is > 100 meter
                     if(distance <= 100){
+                        //and if the person is there for the first time
                         if(!flag){
+                            //add the initTime property,  gps-coordinates in the object
+                            objToPush.initTime = data[i-1].createdAt;
+                            objToPush.gpsCoordinates = data[i-1].gps;
                             flag = true;
+
+                            //increase the halt count
                             count+=1;
                         }
+                        //if the person is still there, add finalTime in the object
+                        objToPush.finalTime = data[i].createdAt;
                     } else {
-                        flag = false;
+
+                        if(flag){
+                            //if the person left that place calculate the final time between initial and final timestamp
+                            //and push the object in result array
+                            let date1 = new Date(objToPush.initTime)
+                            let date2 = new Date(objToPush.finalTime)
+                            let diff = date1.getTime() - date2.getTime()
+                            diff /= 60;
+                            objToPush.minutesOFHalt = Math.abs(Math.round(diff));
+                            results.push(objToPush);
+
+                            //clear the object for new fresh run
+                            objToPush = {};
+                            flag = false;
+                        }
+
                     }
                 }
 
@@ -96,8 +129,8 @@ module.exports = {
 
             res.status(200).json({
                 "status" : "success",
-                "length" : data.length,
-                "halts" : count
+                "length" : results.length,
+                "halts" : results
             })
         } catch (e) {
             console.log(`concoxController -> calculateHalts ${e}`);
