@@ -1,5 +1,6 @@
 const Device = require('../models/deviceSchema');
 const Status = require('../models/statusModel');
+const { calculateTimeDifference } = require('./../utils/commons');
 const { getDistance } =  require('geolib');
 module.exports = {
     getAllDevices : async (req , res) => {
@@ -76,11 +77,7 @@ module.exports = {
             for(let i = 1 ; i < data.length ; i++){
 
                 //calculating time difference between two intervals
-                let date1 = new Date(data[i-1].createdAt)
-                let date2 = new Date(data[i].createdAt)
-                let diff = date1.getTime() - date2.getTime()
-                diff /= 60;
-                let minutes = Math.abs(Math.round(diff));
+                let minutes = calculateTimeDifference(data[i-1].createdAt , data[i].createdAt);
 
                 //if interval is > 15 minutes
                 if(minutes > 15){
@@ -110,11 +107,7 @@ module.exports = {
                         if(flag){
                             //if the person left that place calculate the final time between initial and final timestamp
                             //and push the object in result array
-                            let date1 = new Date(objToPush.initTime)
-                            let date2 = new Date(objToPush.finalTime)
-                            let diff = date1.getTime() - date2.getTime()
-                            diff /= 60;
-                            objToPush.minutesOFHalt = Math.abs(Math.round(diff));
+                            objToPush.minutesOFHalt = calculateTimeDifference(objToPush.initTime, objToPush.finalTime);
                             results.push(objToPush);
 
                             //clear the object for new fresh run
